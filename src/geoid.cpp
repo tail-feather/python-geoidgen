@@ -12,7 +12,8 @@
 
 void init_GeographicLib_Geoid_hpp(pybind11::module scope) {
     auto pybind11_GeographicLib_Geoid = pybind11::class_<GeographicLib::Geoid, std::shared_ptr<GeographicLib::Geoid>>(scope, "Geoid")
-        .def(pybind11::init<const std::string &>())
+        .def(pybind11::init<const std::string &, const std::string &, bool, bool>(),
+                pybind11::arg("name"), pybind11::arg("path")=std::string(), pybind11::arg("cubic")=true, pybind11::arg("threadsafe")=false)
         .def("CacheArea", &GeographicLib::Geoid::CacheArea)
         .def("CacheAll", &GeographicLib::Geoid::CacheAll)
         .def("CacheClear", &GeographicLib::Geoid::CacheClear)
